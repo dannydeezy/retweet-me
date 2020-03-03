@@ -4,7 +4,7 @@ const client = new Twitter(config);
 const fs = require('fs');
 
 const INTERVAL = 20000;
-const USER_TO_RETWEET = 'dannydiekroeger';
+const USER_TO_RETWEET = process.argv[2];
 
 function retweet(ids) {
     for (const id of ids) {
