@@ -26,7 +26,7 @@ function fetchAndUpdate() {
         count: 30,
     };
     if (fs.existsSync('./lastTweet')) {
-        param.since_id = fs.readFileSync('./lastTweet').toString();
+        params.since_id = fs.readFileSync('./lastTweet').toString();
     }
     client.get('statuses/user_timeline', params, (err, data, response) => {
         if (err) {
