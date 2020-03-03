@@ -1,5 +1,5 @@
 # Retweet Me !
-Automatically retweet everything from an account you follow
+Automatically retweet and like everything from an account you follow
 
 ## Usage
 1. Create a [ Twitter developer account and create an App ](https://developer.twitter.com/)

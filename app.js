@@ -16,6 +16,13 @@ function retweet(ids) {
             }
             console.dir(`Retweeted ${id}`);
         });
+        client.post(`favorites/create`, params, (err, data, response) => {
+            if (err) {
+                console.dir(err);
+                return;
+            }
+            console.dir(`Liked ${id}`);
+        });
     }
     fs.writeFileSync('./lastTweet', ids[ids.length - 1]);
 }
