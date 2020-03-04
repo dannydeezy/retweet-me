@@ -23,6 +23,6 @@ module.exports = {
 ```
 node app.js dannydiekroeger
 ```
-Every 20 seconds it will check for new tweets from that user and retweet them!
+Every 20 seconds it will check for new tweets from that user and retweet and like them all!
 
 6. Profit.
