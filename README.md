@@ -1,5 +1,5 @@
 # Retweet Me !
-Automatically retweet and like everything from an account you follow
+Automatically retweet and like everything from another account
 
 ## Usage
 1. Create a [ Twitter developer account and create an App ](https://developer.twitter.com/). Do this with the account that you want to be doing the retweeting from.
@@ -23,7 +23,7 @@ module.exports = {
 ```
 node app.js dannydiekroeger
 ```
-Every 20 seconds it will check for new tweets from that user and retweet them!
+Every 20 seconds it will check for new tweets from that user and retweet and like them all!
 
 6. Profit.
 
