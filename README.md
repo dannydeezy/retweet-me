@@ -26,3 +26,10 @@ node app.js dannydiekroeger
 Every 20 seconds it will check for new tweets from that user and retweet them!
 
 6. Profit.
+
+## Troll mode
+
+7. Troll mode: Run the app like this to reply "shut up" to everything the person tweets:
+```
+node app.js dannydiekroeger true
+```

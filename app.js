@@ -5,6 +5,8 @@ const fs = require('fs');
 
 const INTERVAL = 20000;
 const USER_TO_RETWEET = process.argv[2];
+const reply_with_shutup = process.argv.length > 3
+const lastTweetFile = `./lastTweet-${USER_TO_RETWEET}`
 
 function retweet(ids) {
     for (const id of ids) {
@@ -24,7 +26,22 @@ function retweet(ids) {
             console.dir(`Liked ${id}`);
         });
     }
-    fs.writeFileSync('./lastTweet', ids[ids.length - 1]);
+    fs.writeFileSync(lastTweetFile, ids[ids.length - 1]);
+}
+
+function replyTo(ids) {
+    for (const id of ids) {
+        const status = `@${USER_TO_RETWEET} shut up`
+        const params = { in_reply_to_status_id: id, status };
+        client.post(`statuses/update`, params, (err, data, response) => {
+            if (err) {
+                console.dir(err);
+                return;
+            }
+            console.dir(`Replied shut up to ${id}`);
+        });
+    }
+    fs.writeFileSync(lastTweetFile, ids[ids.length - 1]);
 }
 
 function fetchAndUpdate() {
@@ -32,8 +49,8 @@ function fetchAndUpdate() {
         screen_name: USER_TO_RETWEET,
         count: 30,
     };
-    if (fs.existsSync('./lastTweet')) {
-        params.since_id = fs.readFileSync('./lastTweet').toString();
+    if (fs.existsSync(lastTweetFile)) {
+        params.since_id = fs.readFileSync(lastTweetFile).toString();
     }
     client.get('statuses/user_timeline', params, (err, data, response) => {
         if (err) {
@@ -46,7 +63,12 @@ function fetchAndUpdate() {
         }
         const ids = data.map(d => d.id_str);
         ids.sort();
-        retweet(ids);
+        
+        if (reply_with_shutup) {
+            replyTo(ids);
+        } else {
+            retweet(ids);
+        }
     });
 }
 
